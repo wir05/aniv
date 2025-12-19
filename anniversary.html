@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selamat Ulang Bulan Ke-22</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap');
+
+        :root {
+            --primary-pink: #ffafbd;
+            --secondary-pink: #ffc3a0;
+            --dark-red: #d4145a;
+            --soft-white: #fff5f7;
+            --gold: #d4af37;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--primary-pink), var(--secondary-pink));
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+            overflow-y: auto;
+            color: #444;
+            padding: 15px; /* Kurangkan padding untuk mobile */
+        }
+
+        /* Latar Belakang Jantung Terapung */
+        .hearts-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .heart {
+            position: absolute;
+            bottom: -50px;
+            background-color: rgba(255, 255, 255, 0.4);
+            display: inline-block;
+            height: 30px;
+            margin: 0 10px;
+            transform: rotate(-45deg);
+            width: 30px;
+            animation: float 10s infinite ease-in;
+        }
+
+        .heart:before,
+        .heart:after {
+            content: "";
+            background-color: rgba(255, 255, 255, 0.4);
+            border-radius: 50%;
+            height: 30px;
+            position: absolute;
+            width: 30px;
+        }
+
+        .heart:before { top: -15px; left: 0; }
+        .heart:after { left: 15px; top: 0; }
+
+        @keyframes float {
+            0% { transform: translateY(0) rotate(-45deg); opacity: 0; }
+            20% { opacity: 0.8; }
+            100% { transform: translateY(-110vh) rotate(-45deg); opacity: 0; }
+        }
+
+        /* Kad Utama */
+        .card {
+            background: white;
+            padding: 1.5rem; /* Lebih kecil untuk mobile */
+            border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+            position: relative;
+            z-index: 10;
+            animation: fadeIn 1.5s ease-out;
+            border: 6px solid rgba(255, 255, 255, 0.5);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Muzik Player */
+        .music-player {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+            border-bottom: 1px dashed var(--primary-pink);
+            gap: 5px;
+        }
+
+        audio {
+            width: 100%;
+            max-width: 260px;
+            height: 30px;
+            border-radius: 20px;
+            filter: sepia(20%) saturate(200%) hue-rotate(300deg) brightness(100%);
+        }
+
+        .music-label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--dark-red);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        /* Bahagian Foto */
+        .photo-wrapper {
+            width: 130px;
+            height: 130px;
+            margin-bottom: 15px;
+            position: relative;
+            padding: 5px;
+            background: linear-gradient(45deg, var(--dark-red), var(--primary-pink));
+            border-radius: 50%;
+            box-shadow: 0 8px 20px rgba(212, 20, 90, 0.2);
+            animation: pulse-border 2s infinite;
+        }
+
+        @keyframes pulse-border {
+            0% { box-shadow: 0 0 0 0 rgba(212, 20, 90, 0.4); }
+            70% { box-shadow: 0 0 0 12px rgba(212, 20, 90, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(212, 20, 90, 0); }
+        }
+
+        .photo-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 3px solid white;
+            display: block;
+        }
+
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.8rem;
+            color: var(--dark-red);
+            margin-bottom: 5px;
+        }
+
+        .counter {
+            background: var(--dark-red);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 50px;
+            font-weight: 600;
+            display: inline-block;
+            margin: 5px 0 10px;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+        }
+
+        p {
+            line-height: 1.5;
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+            color: #555;
+            max-width: 95%;
+        }
+
+        /* CSS Checkbox Hack untuk Pesan Cinta */
+        #toggle-letter {
+            display: none;
+        }
+
+        .open-btn {
+            background-color: var(--dark-red);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-block;
+            margin-top: 10px;
+            box-shadow: 0 5px 12px rgba(212, 20, 90, 0.3);
+            font-size: 0.85rem;
+            -webkit-tap-highlight-color: transparent; /* Hilangkan highlight oren pada mobile */
+        }
+
+        .open-btn:active {
+            transform: scale(0.95);
+        }
+
+        /* Gaya Pesan Cinta (Mobile Optimized) */
+        .letter-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(8px);
+            padding: 20px;
+        }
+
+        #toggle-letter:checked ~ .letter-overlay {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .letter-content {
+            background: var(--soft-white);
+            width: 100%;
+            max-width: 350px; /* Saiz ideal untuk kebanyakan skrin telefon */
+            max-height: 80vh; /* Hadkan ketinggian pada mobile */
+            padding: 1.8rem;
+            border-radius: 20px;
+            position: relative;
+            transform: scale(0.8);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            background-image: radial-gradient(#ffcad4 1px, transparent 1px);
+            background-size: 15px 15px;
+            overflow-y: auto; /* Benarkan skrol jika pesanan panjang */
+            text-align: center;
+        }
+
+        #toggle-letter:checked ~ .letter-overlay .letter-content {
+            transform: scale(1);
+        }
+
+        .letter-text {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.25rem; /* Saiz fon selesa untuk mobile */
+            line-height: 1.6;
+            color: #333;
+            text-align: left;
+            margin-bottom: 20px;
+        }
+
+        .close-btn {
+            background: var(--dark-red);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 50px;
+            cursor: pointer;
+            display: inline-block;
+            font-size: 0.8rem;
+            font-weight: bold;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .footer-note {
+            margin-top: 5px;
+            margin-bottom: 10px;
+            color: var(--dark-red);
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.3rem;
+            font-weight: bold;
+        }
+
+        .sparkle { color: var(--gold); }
+
+        /* Animasi Jantung Latar Belakang */
+        .heart:nth-child(1) { left: 5%; animation-duration: 12s; }
+        .heart:nth-child(2) { left: 20%; animation-duration: 8s; animation-delay: 2s; }
+        .heart:nth-child(3) { left: 50%; animation-duration: 15s; animation-delay: 4s; }
+        .heart:nth-child(4) { left: 75%; animation-duration: 10s; animation-delay: 1s; }
+        .heart:nth-child(5) { left: 90%; animation-duration: 13s; animation-delay: 3s; }
+    </style>
+</head>
+<body>
+
+    <div class="hearts-container">
+        <div class="heart"></div>
+        <div class="heart"></div>
+        <div class="heart"></div>
+        <div class="heart"></div>
+        <div class="heart"></div>
+    </div>
+
+    <input type="checkbox" id="toggle-letter">
+
+    <div class="card">
+        <div class="music-player">
+            <span class="music-label">🎵 Putar Lagunya</span>
+            <audio controls loop>
+                <source src="bersamamu.mp3" type="audio/mpeg">
+            </audio>
+        </div>
+
+         <div class="footer-note">Aak ❤️ Dedek</div>
+
+        <div class="photo-wrapper">
+            <img src="berdua.jpg" 
+                 alt="Foto Anniversary"
+                 onerror="this.src='https://via.placeholder.com/150x150?text=Foto+Kita'">
+        </div>
+        
+        <h1>Happy Anniversary!</h1>
+        <div class="counter">22 BULAN BERSAMA</div>
+        
+        <p>Terima kasih kerana sentiasa menjadi pelengkap dalam hidup Aak. <span class="sparkle">✨</span></p>
+
+        <!-- TOMBOL UNTUK BUKA PESAN -->
+        <label for="toggle-letter" class="open-btn">Buka Pesan Cinta ❤️</label>
+        </div>
+
+    </div>
+
+    <!-- OVERLAY PESAN CINTA (MOBILE OPTIMIZED) -->
+    <div class="letter-overlay">
+        <div class="letter-content">
+            <div class="letter-text">
+                Hai Sayang ❤️,<br><br>
+                22 bulan bukan sekadar hitungan waktu, melainkan perjalanan tentang dua orang yang terus memilih bertahan,
+                 saling memahami, dan tumbuh bersama. Dalam suka maupun tidak mudahnya keadaan,
+                  kebersamaan ini terasa cukup karena dijalani dengan ketulusan, kesabaran, dan kehadiran yang konsisten. Bersamamu, banyak hal menjadi lebih sederhana dan layak diperjuangkan..<br><br>
+                ---I Love You So Much---! 🌹
+            </div>
+            <label for="toggle-letter" class="close-btn">Tutup</label>
+        </div>
+    </div>
+
+</body>
+</html>
